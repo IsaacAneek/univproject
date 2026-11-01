@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>University Management System - Sign In</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto Mono', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+            background-color: #323437;
+            color: #d1d0c5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .login-card {
+            background-color: #2c2e31;
+            border: 1px solid #3c3e41;
+            border-radius: 8px;
+            padding: 36px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .title {
+            color: #e2b714;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #646669;
+            font-size: 13px;
+            margin-bottom: 24px;
+        }
+
+        .alert {
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .alert-error {
+            background-color: rgba(202, 71, 84, 0.15);
+            color: #ca4754;
+            border: 1px solid #ca4754;
+        }
+
+        .alert-success {
+            background-color: rgba(226, 183, 20, 0.15);
+            color: #e2b714;
+            border: 1px solid #e2b714;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            color: #646669;
+            font-size: 12px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            width: 100%;
+            background-color: #242628;
+            border: 1px solid #3c3e41;
+            border-radius: 6px;
+            padding: 12px 14px;
+            color: #d1d0c5;
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.15s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #e2b714;
+        }
+
+        button.btn-primary {
+            width: 100%;
+            background-color: #e2b714;
+            color: #2c2e31;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.15s ease;
+        }
+
+        button.btn-primary:hover {
+            background-color: #f0c422;
+        }
+
+        .demo-credentials {
+            margin-top: 28px;
+            padding: 14px;
+            background-color: #242628;
+            border: 1px solid #3c3e41;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .demo-credentials h4 {
+            color: #e2b714;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .demo-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            border-bottom: 1px dashed #3c3e41;
+        }
+
+        .demo-row:last-child {
+            border-bottom: none;
+        }
+
+        .demo-role {
+            color: #646669;
+            font-weight: 600;
+        }
+
+        .demo-creds {
+            color: #d1d0c5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <div class="title">univ_system</div>
+    <div class="subtitle">University Management Portal</div>
+
+    <div th:if="${param.error}" class="alert alert-error">
+        Authentication failed: Invalid username or password.
+    </div>
+
+    <div th:if="${param.logout}" class="alert alert-success">
+        Session terminated: You have logged out.
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text"
+                   id="username"
+                   name="username"
+                   placeholder="Enter username"
+                   required
+                   autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   placeholder="Enter password"
+                   required>
+        </div>
+
+        <button type="submit" class="btn-primary">Sign In</button>
+    </form>
+
+    <div class="demo-credentials">
+        <h4>Demo Accounts (RBAC)</h4>
+        <div class="demo-row">
+            <span class="demo-role">Admin</span>
+            <span class="demo-creds">admin / admin123</span>
+        </div>
+        <div class="demo-row">
+            <span class="demo-role">Teacher</span>
+            <span class="demo-creds">teacher / teacher123</span>
+        </div>
+        <div class="demo-row">
+            <span class="demo-role">Student</span>
+            <span class="demo-creds">student / student123</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

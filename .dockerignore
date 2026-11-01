@@ -1,0 +1,10 @@
+.git
+.vscode
+.idea
+src
+.mvn
+mvnw
+mvnw.cmd
+pom.xml
+README.md
+*.log
